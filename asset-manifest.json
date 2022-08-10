@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/flashback/static/css/main.20229cfe.css",
+    "main.js": "/flashback/static/js/main.54cefa91.js",
+    "index.html": "/flashback/index.html",
+    "main.20229cfe.css.map": "/flashback/static/css/main.20229cfe.css.map",
+    "main.54cefa91.js.map": "/flashback/static/js/main.54cefa91.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.20229cfe.css",
+    "static/js/main.54cefa91.js"
+  ]
+}
