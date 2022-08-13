@@ -2,15 +2,17 @@ import React from "react";
 import { TextField, Button, Typography, Paper } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { newPosts, updatePost } from "../Redux/Slice";
+import {useNavigate} from 'react-router-dom';
 import Resizer from 'react-image-file-resizer';
 import styles from "../Styles/Form.module.css";
 
 export const Form = ({ currentId, setCurrentId }) => {
   const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
+    currentId ? state.posts.posts.find((p) => p._id === currentId) : null
   );
   const user = JSON.parse(localStorage.getItem('profile'));
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [postData, setPostData] = React.useState({
     title: "",
     message: "",
@@ -52,7 +54,7 @@ export const Form = ({ currentId, setCurrentId }) => {
     if (currentId) {
       dispatch(updatePost(currentId, {...postData, name: user?.name}));
     } else {
-      dispatch(newPosts({...postData, name: user?.name}));
+      dispatch(newPosts({...postData, name: user?.name}, navigate));
     }
     clear();
   };
@@ -77,7 +79,7 @@ export const Form = ({ currentId, setCurrentId }) => {
   }
 
   return (
-    <Paper className={styles.paper}>
+    <Paper className={styles.paper} elevation={6}>
       <form
         autoComplete="off"
         noValidate

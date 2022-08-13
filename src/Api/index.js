@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({baseURL: 'https://flashbackmern.herokuapp.com/app'});
+const API = axios.create({baseURL: 'https://flashbackmern.herokuapp.com/app' }); 
 
 API.interceptors.request.use((req) => {
     if(localStorage.getItem('profile') && !localStorage.getItem('user')) {
@@ -12,7 +12,9 @@ API.interceptors.request.use((req) => {
 });
 
 
-export const fetchPosts = () => API.get('/post');
+export const fetchPosts = (page) => API.get(`/post?page=${page}`);
+export const fetchPost = (id) => API.get(`/post/${id}`);
+export const fetchPostsBySearch = (searchQuery) => API.get(`/post/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
 export const createPosts = (newPost) => API.post('/post', newPost);
 export const updatedPost = (id, postData) => API.patch(`/post/${id}`, postData);
 export const deletedPost = (id) => API.delete(`/post/${id}`);
