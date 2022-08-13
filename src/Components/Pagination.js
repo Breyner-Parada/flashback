@@ -8,7 +8,7 @@ import styles from "../Styles/Pagination.module.css";
 
 export const Paginate = ({ page }) => {
   const dispatch = useDispatch();
-  const {numberOfPages} = useSelector(state => state.posts);
+  const {numberOfPages} = useSelector((state) => state.posts);
 
   React.useEffect(() => {
     if(page) dispatch(getAllPosts(page));
@@ -23,7 +23,7 @@ export const Paginate = ({ page }) => {
       variant="outlined"
       color="primary"
       renderItem={(item) => (
-        <PaginationItem {...item} component={Link} to={`/posts?page=${item.page}`} />
+        <PaginationItem {...item} component={Link} to={`/flashback/posts?page=${item.page}`} />
       )}
     />
   );
