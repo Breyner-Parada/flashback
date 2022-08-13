@@ -8,7 +8,8 @@ import {
   signIn,
   signUp,
   fetchPostsBySearch,
-  fetchPost
+  fetchPost,
+  comment
 } from "../Api";
 
 const postsSlice = createSlice({
@@ -61,6 +62,17 @@ const postsSlice = createSlice({
         ...state,
         isLoading: false,
       }
+    },
+    getComments(state, action) {
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if(post._id === action.payload._id) {
+            return action.payload;
+          }
+          return post;
+        })
+      }
     }
   },
 });
@@ -77,6 +89,7 @@ export const getAllPosts = (page) => {
     }
   };
 };
+
 export const getPost = (id) => {
   return async (dispatch) => {
     try {
@@ -89,6 +102,7 @@ export const getPost = (id) => {
     }
   };
 };
+
 export const newPosts = (post, navigate) => {
   return async (dispatch) => {
     try {
@@ -125,6 +139,17 @@ export const deletePost = (id) => {
   };
 };
 
+export const commentPost = (value, id) => {
+  return async (dispatch) => {
+    try {
+      const {data} = await comment(value, id);
+      return data.comments;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const likedPost = (id) => {
   return async (dispatch) => {
     try {
@@ -135,6 +160,7 @@ export const likedPost = (id) => {
     }
   };
 };
+
 export const signin = (formData, Navigate) => {
   return async (dispatch) => {
     try {
