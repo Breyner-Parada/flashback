@@ -18,6 +18,7 @@
 }
 .recommendedPosts {
   display: flex;
+  flex-wrap: wrap;
 }
 .loadingPaper {
   display: flex;

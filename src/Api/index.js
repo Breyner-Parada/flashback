@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({baseURL: 'https://flashbackmern.herokuapp.com/app' }); 
+const API = axios.create({baseURL: 'https://http-nodejs-production-a4ce.up.railway.app/app' }); 
 
 API.interceptors.request.use((req) => {
     if(localStorage.getItem('profile') && !localStorage.getItem('user')) {
